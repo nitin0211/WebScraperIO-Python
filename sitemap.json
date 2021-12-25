@@ -1,0 +1,54 @@
+{
+  "_id": "trustpilot",
+  "startUrl":
+    "https://www.trustpilot.com/review/gap.co.uk?page=11"
+  ,
+  "selectors": [
+    {
+      "id": "element",
+      "type": "SelectorElement",
+      "delay": 0,
+      "multiple": true,
+      "selector": "article",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "Review",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "p",
+      "parentSelectors": [
+        "element"
+      ]
+    },
+    {
+      "id": "date",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "time",
+      "parentSelectors": [
+        "element"
+      ]
+    },
+    {
+      "id": "Author",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "div.consumer-information__name",
+      "parentSelectors": [
+        "element"
+      ]
+    }
+  ]
+}

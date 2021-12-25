@@ -1,0 +1,89 @@
+{
+  "_id": "frag_amazon_pl",
+  "startUrl":
+    "https://www.amazon.com/s?i=beauty-intl-ship&bbn=16225006011&rh=n%3A16225006011%2Cn%3A11056591%2Cp_6%3AA187D7G8TRYUDZ%7CA24UNAW0BT200P%7CAYRCZ90M2OD6P&dc&qid=1640437201&rnid=331588011&ref=sr_nr_p_6_7"
+  ,
+  "selectors": [
+    {
+      "id": "element",
+      "type": "SelectorElement",
+      "delay": 0,
+      "multiple": true,
+      "selector": ".sg-col-4-of-12.s-result-item div.sg-col-inner",
+      "parentSelectors": [
+        "_root",
+        "pagination"
+      ]
+    },
+    {
+      "id": "Product_name",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "h2",
+      "parentSelectors": [
+        "element"
+      ]
+    },
+    {
+      "id": "price",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "[data-a-size='l'] span[aria-hidden]",
+      "parentSelectors": [
+        "element"
+      ]
+    },
+    {
+      "id": "no_of_rating",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": ".a-row span span.a-size-base",
+      "parentSelectors": [
+        "element"
+      ]
+    },
+    {
+      "id": "Product_rating",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "i.a-icon-star-small",
+      "parentSelectors": [
+        "element"
+      ]
+    },
+    {
+      "id": "pagination",
+      "type": "SelectorLink",
+      "delay": 0,
+      "multiple": false,
+      "optional": true,
+      "selector": ".a-last a",
+      "parentSelectors": [
+        "_root",
+        "pagination"
+      ]
+    },
+    {
+      "id": "product _link",
+      "type": "SelectorLink",
+      "delay": 0,
+      "multiple": false,
+      "optional": true,
+      "selector": ".a-size-mini a",
+      "parentSelectors": [
+        "element"
+      ]
+    }
+  ]
+}
