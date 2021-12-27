@@ -105,7 +105,7 @@ class ClickAction(Action):
     def pre_check(self, protocol):
         pass
 
-    def get_click_elements(self, driver, url, *args, **kwargs):
+    def get_click_elements(self, browser, url):
         """
         :param driver:
         :param url:
@@ -113,6 +113,7 @@ class ClickAction(Action):
         :param kwargs:
         :return:
         """
+        driver = browser.driver
         result_css_path = list()
 
         click_path = self.protocol.get("clickElementSelector")
@@ -121,19 +122,17 @@ class ClickAction(Action):
         for single_click_element in click_elements:
             cur_path = driver.execute_script(GET_ITEM_CSS_PATH, single_click_element)
             result_css_path.append(cur_path)
-
-        if not hasattr(self, "waiting_elements"):
-            self.__setattr__("waiting_elements", result_css_path)
+        # self.__setattr__("waiting_elements", result_css_path)
+        return result_css_path
 
     def do(self, browser, url, *args, **kwargs):
         driver = browser.driver
 
-        if not hasattr(self, "waiting_elements"):
-            raise AttributeError
+        # if not hasattr(self, "waiting_elements"):
+        #     raise AttributeError
 
         orgin_handles = len(driver.window_handles)
-
-        current_click_element = self.waiting_elements.pop(0)
+        current_click_element = self.waiting_elements[0]
 
         driver.execute_async_script(TRIGGER_ELEMENT_CLICK, current_click_element)
 

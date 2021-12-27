@@ -100,6 +100,10 @@ class ElementQuery(object):
         self.parentElement = parent_element
         self.selectedElements = list()
 
+    def add_element(self, element):
+        if element not in self.selectedElements:
+            self.selectedElements.append(element)
+
     def get_selector_parts(self):
         resultSelectors = []
         currentSelector = ""
@@ -124,7 +128,5 @@ class ElementQuery(object):
         for selector in selectorParts:
             elements = pq(self.parentElement)(selector)
             for item in elements:
-                if item not in self.selectedElements:
-                    self.selectedElements.append(item)
-
+                self.add_element(item)
         return self.selectedElements

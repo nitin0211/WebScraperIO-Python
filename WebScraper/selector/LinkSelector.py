@@ -1,6 +1,7 @@
 from . import RegisterSelectorType, Selector
 from pyquery import PyQuery as pq
 
+
 @RegisterSelectorType("SelectorLink")
 class LinkSelector(Selector):
 

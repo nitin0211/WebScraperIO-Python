@@ -4,6 +4,8 @@ from WebScraper.Utils import setInterval
 from WebScraper.UniqueElementList import UniqueElementList
 from selenium.webdriver.common.by import By
 import time
+from WebScraper.JsUtils import TRIGGER_ELEMENT_CLICK, GET_ITEM_CSS_PATH
+from WebScraper.selector import ElementQuery
 
 
 @RegisterSelectorType("SelectorElementClick")
@@ -47,66 +49,72 @@ class ClickSelector(Selector):
     def will_return_elements(self):
         return True
 
-    # def get_click_elements(self, driver, job_url, parentElement):
-    #     click_css_path = self.actions.protocol.get("click_path")
-    #
-    # def get_item_css_path(self, driver, element):
-    #     return driver.execute_script(GET_ITEM_CSS_PATH, element)
-    #
-    #
-    # def trigger_element_click(self):
-    #     pass
-    #
-    #
+    def get_click_elements(self, parent_element):
+        click_elements = ElementQuery(self.actions.protocol.get("clickElementSelector"), parent_element).execute()
+        return click_elements
+
+    def trigger_button_click(self, browser, click_element):
+        # css_selector = browser.driver.execute_script(GET_ITEM_CSS_PATH, click_element)
+        # print(css_selector)
+        browser.driver.execute_async_script(TRIGGER_ELEMENT_CLICK, click_element)
 
     def get_specific_data(self, browser, job_url, parent_element):
         driver = browser.driver
 
-        found_elements = UniqueElementList("unique_html_text")
+        found_elements = UniqueElementList("uniqueHTMLText")
 
-        self.actions.get_click_elements(driver, job_url)
+        elements = self.get_data_elements(driver, job_url, parent_element)
+        if self.actions.protocol.get("discardInitialElements") == "don-not-discard":
+            for element in elements:
+                found_elements.push(element)
 
-        initial_elements = self.get_data_elements(driver, job_url, parent_element)
-
-        for element in initial_elements:
-            found_elements.push(element)
-
-        if self.actions.protocol.get("discardInitialElements") == "discard":
-            found_elements = UniqueElementList("unique_text")
-
-        if len(self.actions.waiting_elements) == 0:
+        click_elements = self.actions.get_click_elements(browser, job_url)
+        if len(click_elements) == 0:
             return found_elements
 
-        time_step = float(self.delay)
+        done_clicking_elements = UniqueElementList(self.actions.protocol.get("clickElementUniquenessType", "uniqueText"))
 
-        next_click_time = time.time()
+        current_click_element = click_elements[0]
+        if self.actions.protocol.get('clickType') == 'clickOnce':
+            done_clicking_elements.append(current_click_element)
+
+        self.trigger_button_click(browser, current_click_element)
+
+        time_step = float(self.delay)
+        next_element_selection = time.time() + time_step
 
         def click_func(stop_event, *args, **kwargs):
-            nonlocal time_step
-            nonlocal next_click_time
+            # nonlocal time_step
+            nonlocal next_element_selection
+            nonlocal current_click_element
+            nonlocal click_elements
 
             now = time.time()
-
-            if now < next_click_time:
+            if now < next_element_selection:
+                print("inside return")
                 return
 
-            # Click on
-            self.actions.do(browser, job_url)
-
-            parent_elements = driver.find_element(By.TAG_NAME, "html").get_attribute("outerHTML")
-            data_elements = self.get_data_elements(driver, job_url, parent_elements)
-
-            add_some_element = False
-            for item in data_elements:
+            parent_element = driver.find_element(By.TAG_NAME, "html").get_attribute("outerHTML")
+            elements_ = self.get_data_elements(browser, job_url, parent_element)
+            added_an_element = False
+            for item in elements_:
                 added = found_elements.push(item)
                 if added:
-                    add_some_element = True
+                    added_an_element = True
+            if not added_an_element:
+                done_clicking_elements.push(current_click_element)
 
-            if len(self.actions.waiting_elements) == 0:
+            click_elements = self.actions.get_click_elements(browser, job_url)
+
+            if len(click_elements) == 0:
                 stop_event.set()
             else:
-                next_click_time = now + time_step
+                current_click_element = click_elements[0]
+                if self.actions.protocol.get("clickType") == 'clickOnce':
+                    done_clicking_elements.push(current_click_element)
+                self.trigger_button_click(browser, current_click_element)
+                next_element_selection = now + time_step
+                print("NexT Element Selection ", next_element_selection, now)
 
         inter = setInterval(1, click_func)
-
         return found_elements
