@@ -145,9 +145,7 @@ class ClickAction(Action):
 
 @RegisterActionType("ScrollAction")
 class ScrollAction(Action):
-    """
-        {"scroll_type":"N/integer"}
-    """
+
     def __init__(self, protocol):
         super(ScrollAction, self).__init__(protocol=protocol)
 
@@ -163,8 +161,8 @@ class ScrollAction(Action):
         return scroll_percent
 
     @classmethod
-    def from_settings(cls, scroll_type):
-        return cls({"scroll_type": scroll_type})
+    def from_settings(cls, scrollElementSelector):
+        return cls({"scrollElementSelector": scrollElementSelector})
 
 
 @RegisterActionType("CloseAction")

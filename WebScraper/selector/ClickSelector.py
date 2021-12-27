@@ -76,8 +76,7 @@ class ClickSelector(Selector):
 
         current_click_element = click_elements[0]
         if self.actions.protocol.get('clickType') == 'clickOnce':
-            done_clicking_elements.append(current_click_element)
-
+            done_clicking_elements.push(current_click_element)
         self.trigger_button_click(browser, current_click_element)
 
         time_step = float(self.delay)
@@ -106,6 +105,8 @@ class ClickSelector(Selector):
 
             click_elements = self.actions.get_click_elements(browser, job_url)
 
+            click_elements = list(filter(lambda x: not done_clicking_elements.is_added(x), click_elements))
+
             if len(click_elements) == 0:
                 stop_event.set()
             else:
@@ -114,7 +115,6 @@ class ClickSelector(Selector):
                     done_clicking_elements.push(current_click_element)
                 self.trigger_button_click(browser, current_click_element)
                 next_element_selection = now + time_step
-                print("NexT Element Selection ", next_element_selection, now)
 
         inter = setInterval(1, click_func)
         return found_elements
