@@ -60,11 +60,11 @@ class ClickSelector(Selector):
 
     def get_specific_data(self, browser, job_url, parent_element):
         driver = browser.driver
-
+        pagination_count = 1
         found_elements = UniqueElementList("uniqueHTMLText")
 
         elements = self.get_data_elements(driver, job_url, parent_element)
-        if self.actions.protocol.get("discardInitialElements") == "don-not-discard":
+        if self.actions.protocol.get("discardInitialElements") == "do-not-discard":
             for element in elements:
                 found_elements.push(element)
 
@@ -87,6 +87,7 @@ class ClickSelector(Selector):
             nonlocal next_element_selection
             nonlocal current_click_element
             nonlocal click_elements
+            nonlocal pagination_count
 
             now = time.time()
             if now < next_element_selection:
@@ -110,6 +111,7 @@ class ClickSelector(Selector):
             if len(click_elements) == 0:
                 stop_event.set()
             else:
+                pagination_count += 1
                 current_click_element = click_elements[0]
                 if self.actions.protocol.get("clickType") == 'clickOnce':
                     done_clicking_elements.push(current_click_element)
