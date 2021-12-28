@@ -91,7 +91,6 @@ class ClickSelector(Selector):
 
             now = time.time()
             if now < next_element_selection:
-                print("inside return")
                 return
 
             parent_element = driver.find_element(By.TAG_NAME, "html").get_attribute("outerHTML")

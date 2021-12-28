@@ -57,9 +57,12 @@ class ScrollSelector(Selector):
         if self.action.protocol.get("scrollElementSelector"):
             scroll_elements = ElementQuery(self.action.protocol.get("scrollElementSelector"), parent_element).execute()
             if scroll_elements:
-                browser.driver.execute_script('arguments[0].scrollIntoView(true);', scroll_elements[0])
+                browser.driver.execute_script('arguments[0].scrollIntoView({behavior: "smooth"});', scroll_elements[0])
         else:
-            browser.driver.execute_script('window.scrollTo(0, document.body.scrollHeight)')
+            element = browser.driver.find_element_by_css_selector(self.selector)
+            browser.driver.execute_script("arguments[0].scrollTo({top: arguments[0].scrollHeight, behavior: 'smooth'});", element)
+            # browser.driver.execute_script("window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});")
+            # browser.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", element)
 
     # def get_specific_data(self, browser, job_url, parent_element):
     #     driver = browser.driver
