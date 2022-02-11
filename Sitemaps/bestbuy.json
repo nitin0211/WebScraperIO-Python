@@ -1,0 +1,119 @@
+{
+  "_id": "bb_parbhat_test",
+  "startUrl":
+    "https://www.bestbuy.com/site/reviews/google-geek-squad-certified-refurbished-pixel-buds-true-wireless-in-ear-headphones-clearly-white/6415286?variant=A&page=3&pageSize=20&sku=6415286&sort=BEST_REVIEW&variant=A"
+  ,
+  "selectors": [
+    {
+      "id": "SKU",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "a.v-fw-regular",
+      "parentSelectors": [
+        "scroll_main"
+      ]
+    },
+    {
+      "id": "price",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": ".pricing-price.pricing-lib-price-8-2149-6 div div div .priceView-hero-price span[aria-hidden]",
+      "parentSelectors": [
+        "scroll_main"
+      ]
+    },
+    {
+      "id": "product rating",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "span.ugc-c-review-average",
+      "parentSelectors": [
+        "scroll_main"
+      ]
+    },
+    {
+      "id": "product link",
+      "type": "SelectorLink",
+      "delay": 0,
+      "multiple": false,
+      "selector": "a.v-fw-regular",
+      "parentSelectors": [
+        "scroll_main"
+      ]
+    },
+    {
+      "id": "element",
+      "type": "SelectorElement",
+      "delay": 0,
+      "multiple": true,
+      "selector": "li.review-item",
+      "parentSelectors": [
+        "pagination",
+        "scroll_main"
+      ]
+    },
+    {
+      "id": "review",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "p.pre-white-space",
+      "parentSelectors": [
+        "element"
+      ]
+    },
+    {
+      "id": "date",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "time",
+      "parentSelectors": [
+        "element"
+      ]
+    },
+    {
+      "id": "author",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": ".review-item-header strong",
+      "parentSelectors": [
+        "element"
+      ]
+    },
+    {
+      "id": "pagination",
+      "type": "SelectorLink",
+      "delay": 0,
+      "multiple": false,
+      "selector": ".next a",
+      "parentSelectors": [
+        "pagination",
+        "scroll_main"
+      ]
+    },
+    {
+      "id": "scroll_main",
+      "type": "SelectorElementScroll",
+      "delay": 4,
+      "multiple": true,
+      "selector": ".container-v2 > div",
+      "parentSelectors": [
+        "_root"
+      ]
+    }
+  ]
+}

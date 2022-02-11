@@ -1,0 +1,158 @@
+{
+  "_id": "lowes2_pras",
+  "startUrl":
+    "https://www.lowes.com/pd/Royal-Oak-Oak-15-4-lb-Charcoal-Briquettes/1000175405"
+  ,
+  "selectors": [
+    {
+      "id": "Product Name",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "h1",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "SKU",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": ".modelNo span:nth-of-type(2)",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "Price",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "span.large",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "pagination1",
+      "type": "SelectorElementClick",
+      "delay": 2,
+      "multiple": false,
+      "selector": "#preview-reviews button.sc-giAqHp",
+      "clickType": "clickOnce",
+      "parentSelectors": [
+        "_root"
+      ],
+      "clickElementSelector": "#preview-reviews button.sc-giAqHp",
+      "discardInitialElements": "do-not-discard",
+      "clickElementUniquenessType": "uniqueText"
+    },
+    {
+      "id": "element",
+      "type": "SelectorElementClick",
+      "delay": 2,
+      "multiple": true,
+      "selector": "div.ReviewRowstyles__ReviewRowParentWrapper-sc-1v62ao2-0:nth-of-type(n+6)",
+      "clickType": "clickMore",
+      "click_max": 100,
+      "parentSelectors": [
+        "_root",
+        "pagination1"
+      ],
+      "clickElementSelector": ".size--small.variant--secondary",
+      "discardInitialElements": "do-not-discard",
+      "clickElementUniquenessType": "uniqueText"
+    },
+    {
+      "id": "read_more",
+      "type": "SelectorElementClick",
+      "delay": 2,
+      "multiple": false,
+      "selector": ".ButtonBase-sc-1ngvxvr-0.variant--ghost span.label",
+      "clickType": "clickOnce",
+      "parentSelectors": [
+        "element"
+      ],
+      "clickElementSelector": ".ButtonBase-sc-1ngvxvr-0.variant--ghost span.label",
+      "discardInitialElements": "do-not-discard",
+      "clickElementUniquenessType": "uniqueText"
+    },
+    {
+      "id": "author",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "span.cgcnickname",
+      "parentSelectors": [
+        "element"
+      ]
+    },
+    {
+      "id": "review",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "p[itemprop='reviewBody']",
+      "parentSelectors": [
+        "element"
+      ]
+    },
+    {
+      "id": "date",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "span.cgcreviewsubmitdate",
+      "parentSelectors": [
+        "element"
+      ]
+    },
+    {
+      "id": "rating",
+      "type": "SelectorElementAttribute",
+      "delay": 0,
+      "multiple": false,
+      "optional": true,
+      "selector": "span[class=\"cgcstarspan\"]",
+      "parentSelectors": [
+        "element"
+      ],
+      "extractAttribute": "aria-label"
+    },
+    {
+      "id": "source",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "p[class=\"reviewDetails\"]",
+      "parentSelectors": [
+        "element"
+      ]
+    },
+    {
+      "id": "title",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "p.h1",
+      "parentSelectors": [
+        "element"
+      ]
+    }
+  ]
+}

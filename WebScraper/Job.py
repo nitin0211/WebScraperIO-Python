@@ -1,5 +1,6 @@
 import re
 
+
 class Job(object):
 
     def __init__(self, url, parentSelectorId, scraper, parentJob, baseData):
@@ -17,13 +18,12 @@ class Job(object):
 
         regex = re.compile(r"(https?://)?([a-z0-9\-.]+\.[a-z0-9\-]+(:\d+)?|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(:\d+)?)?(/[^?]*/|/)?([^?]*)?(\?.*)?")
 
-        parent_group = list(regex.match(parent_url).groups())
-        child_group = list(regex.match(child_url).groups())
-
+        parent_group = list(regex.match(parent_url or '').groups())
+        child_group = list(regex.match(child_url or '').groups())
         abso_url = str()
 
         if not child_group[0] and not child_group[1] and not child_group[4] and not child_group[5]:
-            abso_url += parent_group[0] + parent_group[1] + parent_group[4] + parent_group[5] + child_group[6]
+            abso_url += parent_group[0] + parent_group[1] + parent_group[4] + parent_group[5] + (child_group[6] or 'None')
             return abso_url
 
         if not child_group[0]:

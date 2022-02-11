@@ -60,8 +60,8 @@ class ScrollSelector(Selector):
                 browser.driver.execute_script('arguments[0].scrollIntoView({behavior: "smooth"});', scroll_elements[0])
         else:
             element = browser.driver.find_element_by_css_selector(self.selector)
-            browser.driver.execute_script("arguments[0].scrollTo({top: arguments[0].scrollHeight, behavior: 'smooth'});", element)
-            # browser.driver.execute_script("window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});")
+            # browser.driver.execute_script("arguments[0].scrollTo({top: arguments[0].scrollHeight, behavior: 'smooth'});", element)
+            browser.driver.execute_script("window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});")
             # browser.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", element)
 
     # def get_specific_data(self, browser, job_url, parent_element):
@@ -124,8 +124,8 @@ class ScrollSelector(Selector):
             if now < next_scroll_time:
                 return
 
-            parent_element = driver.find_element(By.TAG_NAME, "html").get_attribute("outerHTML")
-            elements_ = self.get_data_elements(browser, job_url, parent_element)
+            parent_elements = driver.find_element(By.TAG_NAME, "html").get_attribute("outerHTML")
+            elements_ = self.get_data_elements(browser, job_url, parent_elements)
             added_an_element = False
             for item in elements_:
                 added = found_elements.push(item)

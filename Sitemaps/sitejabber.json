@@ -1,0 +1,139 @@
+{
+  "_id": "sitejabberasd",
+  "startUrl":
+    "https://www.sitejabber.com/reviews/uhc.com"
+  ,
+  "selectors": [
+    {
+      "id": "main scroll",
+      "type": "SelectorElementScroll",
+      "delay": 2,
+      "multiple": true,
+      "selector": "div.pagination",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "Brand",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "h1.url-header__info__title",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "Product Rating",
+      "type": "SelectorElementAttribute",
+      "delay": 0,
+      "multiple": false,
+      "optional": true,
+      "selector": ".rating__stars div",
+      "parentSelectors": [
+        "_root"
+      ],
+      "extractAttribute": "title"
+    },
+    {
+      "id": "Location",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "li.url-business__actions__item:nth-of-type(3)",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "Rating Count",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "div.rating__reviews",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "Element",
+      "type": "SelectorElementClick",
+      "delay": 2,
+      "multiple": true,
+      "selector": "div.review",
+      "clickType": "clickMore",
+      "click_max": 100,
+      "parentSelectors": [
+        "_root"
+      ],
+      "clickElementSelector": "#reviews > div.url-reviews__ajax > div.pagination > div.pagination__next > span > a",
+      "discardInitialElements": "do-not-discard",
+      "clickElementUniquenessType": "uniqueText"
+    },
+    {
+      "id": "Author",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "span.review__author__name__link",
+      "parentSelectors": [
+        "Element"
+      ]
+    },
+    {
+      "id": "date",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "div.review__date",
+      "parentSelectors": [
+        "Element"
+      ]
+    },
+    {
+      "id": "Title",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "span.review__title__text",
+      "parentSelectors": [
+        "Element"
+      ]
+    },
+    {
+      "id": "Review",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "div.review__text",
+      "parentSelectors": [
+        "Element"
+      ]
+    },
+    {
+      "id": "Review_rating",
+      "type": "SelectorElementAttribute",
+      "delay": 0,
+      "multiple": false,
+      "optional": true,
+      "selector": "div.stars",
+      "parentSelectors": [
+        "Element"
+      ],
+      "extractAttribute": "title"
+    }
+  ]
+}

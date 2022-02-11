@@ -54,8 +54,8 @@ class LinkSelector(Selector):
             data = dict()
             data[self.id] = pq_object.text()
             data["_followSelectorId"] = self.id
-            data[str(self.id) + "-href"] = pq_object.attr("href")
-            data["_follow"] = pq_object.attr("href")
+            data[str(self.id) + "-href"] = pq_object.attr("href") or ''
+            data["_follow"] = pq_object.attr("href") or ''
 
             resultData.append(data)
 

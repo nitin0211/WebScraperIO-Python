@@ -77,7 +77,9 @@ class DataExtractor(object):
 
     def get_selector_common_data(self, selectors, selector, parent_element):
         data = selector.get_data(self.browser, self.url, parent_element)
-        if selector.can_return_elements:
+        if not data:
+            return data
+        if selector.will_return_elements():
             new_parent_element = data[0]
             data = self.get_selector_tree_common_data(selectors, selector.id, new_parent_element)
             return data

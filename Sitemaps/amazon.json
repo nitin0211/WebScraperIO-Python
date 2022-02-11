@@ -1,0 +1,197 @@
+{
+  "_id": "by_amazon_checking",
+  "startUrl":
+    "https://www.amazon.in/Robustrion-Degree-Rotating-TB-X306X-TB-X306F/product-reviews/B09GVCBFJZ/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+  ,
+  "selectors": [
+    {
+      "id": "SKU",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "reload": true,
+      "optional": true,
+      "selector": ".a-size-large a",
+      "parentSelectors": [
+        "_root"
+      ],
+      "dropdown": true
+    },
+    {
+      "id": "Brand",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "reload": true,
+      "optional": true,
+      "selector": "#cr-arp-byline a",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "Product Ratings",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "reload": true,
+      "optional": true,
+      "selector": ".aok-align-center div",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "Max Product Ratings",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "reload": true,
+      "optional": true,
+      "selector": ".aok-align-center div",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "Dropdown_",
+      "type": "SelectorElementClick",
+      "delay": 2,
+      "multiple": false,
+      "reload": true,
+      "selector": "span#a-autoid-4-announce",
+      "clickType": "clickOnce",
+      "parentSelectors": [
+        "_root"
+      ],
+      "clickElementSelector": "span#a-autoid-4-announce",
+      "discardInitialElements": "do-not-discard",
+      "clickElementUniquenessType": "uniqueText"
+    },
+    {
+      "id": "dropdown_item",
+      "type": "SelectorElementClick",
+      "delay": 5,
+      "multiple": false,
+      "reload": true,
+      "selector": "a#sort-order-dropdown_1",
+      "clickType": "clickOnce",
+      "parentSelectors": [
+        "_root"
+      ],
+      "clickElementSelector": "a#sort-order-dropdown_1",
+      "discardInitialElements": "do-not-discard",
+      "clickElementUniquenessType": "uniqueText"
+    },
+    {
+      "id": "Element",
+      "type": "SelectorElement",
+      "delay": 0,
+      "multiple": true,
+      "reload": true,
+      "selector": ".a-row div.a-section.celwidget",
+      "reload_url": false,
+      "parentSelectors": [
+        "_root",
+        "Pagination"
+      ]
+    },
+    {
+      "id": "Pagination",
+      "type": "SelectorLink",
+      "delay": 0,
+      "multiple": false,
+      "reload": true,
+      "selector": ".a-last a",
+      "parentSelectors": [
+        "_root",
+        "Pagination"
+      ]
+    },
+    {
+      "id": "Review",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "reload": true,
+      "optional": true,
+      "selector": "div.a-row.a-spacing-small.review-data > span > span",
+      "parentSelectors": [
+        "Element"
+      ]
+    },
+    {
+      "id": "Author",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "reload": true,
+      "optional": true,
+      "selector": "span.a-profile-name",
+      "parentSelectors": [
+        "Element"
+      ]
+    },
+    {
+      "id": "date",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "reload": true,
+      "selector": "span.a-color-secondary",
+      "parentSelectors": [
+        "Element"
+      ],
+      "apply_date_range": true,
+      "sort_order": "desc",
+      "to_date": "2021-10-25 23:59:59+00:00",
+      "from_date": "2021-09-01 00:00:00+00:00"
+    },
+    {
+      "id": "Location",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "reload": true,
+      "optional": true,
+      "selector": "span.a-color-secondary",
+      "parentSelectors": [
+        "Element"
+      ]
+    },
+    {
+      "id": "Review ratings",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "reload": true,
+      "optional": true,
+      "selector": "i.a-icon-star",
+      "parentSelectors": [
+        "Element"
+      ]
+    },
+    {
+      "id": "Max Review Ratings",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "reload": true,
+      "optional": true,
+      "selector": "i.a-icon-star",
+      "parentSelectors": [
+        "Element"
+      ]
+    }
+  ]
+}

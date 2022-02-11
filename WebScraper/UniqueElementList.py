@@ -20,9 +20,9 @@ class UniqueElementList(list):
         if self.uniqueness_type == "uniqueText":
             pq_object = pq(parent_element)
             text = pq_object.text()
-            element_id = get_md5(text)
+            # element_id = get_md5(text)
 
-            return element_id
+            return text
 
         elif self.uniqueness_type == "uniqueHTMLText":
             pq_object = pq(parent_element)

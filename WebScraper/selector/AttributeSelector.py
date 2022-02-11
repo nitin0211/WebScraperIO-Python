@@ -57,16 +57,16 @@ class AttributeSelector(Selector):
             pq_object = pq(element)
             data = dict()
 
-            if self.will_return_new_jobs():
-                data[self.id] = pq_object.attr(self.extract_attribute)
-                data["_followSelectorId"] = self.id
-                data[str(self.id) + "-href"] = pq_object.attr(self.extract_attribute)
-                data["_follow"] = pq_object.attr(self.extract_attribute)
+            # if self.will_return_new_jobs():
+            data[str(self.id)] = pq_object.attr(self.extract_attribute)
+            # data["_followSelectorId"] = self.id
+            # data[str(self.id) + "-href"] = pq_object.attr(self.extract_attribute)
+            # data["_follow"] = pq_object.attr(self.extract_attribute)
 
-                resultData.append(data)
+            resultData.append(data)
 
-            else:
-                data[self.id] = pq_object.attr(self.extract_attribute)
-                resultData.append(data)
+            # else:
+            #     data[self.id] = pq_object.attr(self.extract_attribute)
+            #     resultData.append(data)
 
         return resultData

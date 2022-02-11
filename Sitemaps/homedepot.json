@@ -1,0 +1,46 @@
+{
+  "_id": "homedepot_sc_scoller_dropdown",
+  "startUrl":
+    "https://www.homedepot.com/p/DEWALT-20-Volt-MAX-Cordless-Compact-Reciprocating-Saw-Tool-Only-DCS387B/205626805"
+  ,
+  "selectors": [
+    {
+      "id": "scroller",
+      "type": "SelectorElementScroll",
+      "delay": 5,
+      "multiple": true,
+      "selector": "html",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "dropdown_recent",
+      "type": "SelectorElementClick",
+      "delay": 5,
+      "multiple": true,
+      "selector": "span.drop-down__title",
+      "clickType": "clickOnce",
+      "parentSelectors": [
+        "_root"
+      ],
+      "clickElementSelector": "span.drop-down__title",
+      "discardInitialElements": "do-not-discard",
+      "clickElementUniquenessType": "uniqueText"
+    },
+    {
+      "id": "select_option",
+      "type": "SelectorElementClick",
+      "delay": 2,
+      "multiple": true,
+      "selector": "span.drop-down__title",
+      "clickType": "clickOnce",
+      "parentSelectors": [
+        "_root"
+      ],
+      "clickElementSelector": "span.drop-down__title option[value=\"newest\"]",
+      "discardInitialElements": "do-not-discard",
+      "clickElementUniquenessType": "uniqueText"
+    }
+  ]
+}

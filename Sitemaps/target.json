@@ -1,0 +1,124 @@
+{
+  "_id": "target_tests",
+  "startUrl":
+    "https://www.target.com/p/secret-derma-48-hr-invisible-gel-antiperspirant-and-deodorant-cooling-vitamin-b5-aloe-2-5oz/-/A-80165985#lnk=sametab"
+  ,
+  "selectors": [
+    {
+      "id": "scroll",
+      "type": "SelectorElementScroll",
+      "delay": 5,
+      "multiple": false,
+      "selector": "div.l-container",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "element",
+      "type": "SelectorElementClick",
+      "delay": 5,
+      "multiple": true,
+      "selector": "div.ReviewCard-sc-1hvj2iv-6",
+      "clickType": "clickMore",
+      "click_max": 100,
+      "parentSelectors": [
+        "scroll"
+      ],
+      "clickElementSelector": ".h-text-center button.dYdoYK",
+      "discardInitialElements": "do-not-discard",
+      "clickElementUniquenessType": "uniqueText"
+    },
+    {
+      "id": "Product name",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "[itemprop='name'] span",
+      "parentSelectors": [
+        "scroll"
+      ]
+    },
+    {
+      "id": "Price",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "span[data-test=\"product-price\"]",
+      "parentSelectors": [
+        "scroll"
+      ]
+    },
+    {
+      "id": "Product rating",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "div.RatingSummary__StyledRating-sc-bxhycp-0",
+      "parentSelectors": [
+        "scroll"
+      ]
+    },
+    {
+      "id": "Author",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "span[data-test='review-card--username']",
+      "parentSelectors": [
+        "element"
+      ]
+    },
+    {
+      "id": "Review",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "div.h-margin-t-default",
+      "parentSelectors": [
+        "element"
+      ]
+    },
+    {
+      "id": "Date",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "span[data-test='review-card--reviewTime']",
+      "parentSelectors": [
+        "element"
+      ]
+    },
+    {
+      "id": "review rating",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "span[class=\"utils__ScreenReaderOnly-sc-1p6kq06-0 iyDnVM\"]",
+      "parentSelectors": [
+        "element"
+      ]
+    },
+    {
+      "id": "Number of Ratings",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": ".Count__FeedbackCount-sc-1afgegm-0 span",
+      "parentSelectors": [
+        "element"
+      ]
+    }
+  ]
+}

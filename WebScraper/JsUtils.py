@@ -43,7 +43,20 @@ TRIGGER_ELEMENT_CLICK = """
                                 setTimeout(function(){callback(true);}, 500);
                             });  
                             el.click();          
+                        
                         """
+
+BUTTON_CLICK = """
+            const cssSelector = arguments[0];
+            var script   = document.createElement("script");
+            script.type  = "text/javascript";
+            script.text  = "" +
+                "(function(){ " +
+                "var el = document.querySelectorAll('"+cssSelector+"')[0]; " +
+                "el.click(); " +
+                "})();";
+            document.body.appendChild(script);
+"""
 
 SCROLL_TO_BOTTOM = """
                         const callback = arguments[arguments.length - 1];

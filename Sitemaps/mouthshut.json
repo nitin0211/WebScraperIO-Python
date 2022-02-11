@@ -1,0 +1,103 @@
+{
+  "_id": "mts",
+  "startUrl":
+    "https://www.mouthshut.com/product-reviews/Top-Ramen-Noodles-reviews-925039949-sort-MsDate-order-d"
+  ,
+  "selectors": [
+    {
+      "id": "load_more_reviews",
+      "type": "SelectorElement",
+      "delay": 2,
+      "multiple": true,
+      "selector": "div[class=\"row review-article\"]",
+      "parentSelectors": [
+        "_root",
+        "pagination"
+      ]
+    },
+    {
+      "id": "title",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "strong a",
+      "parentSelectors": [
+        "load_more_reviews"
+      ]
+    },
+    {
+      "id": "date",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "div.rating > span:nth-of-type(2)",
+      "parentSelectors": [
+        "load_more_reviews"
+      ]
+    },
+    {
+      "id": "read_more",
+      "type": "SelectorElementClick",
+      "delay": 0,
+      "multiple": false,
+      "optional": true,
+      "selector": "a:contains(\"Read More\")",
+      "clickType": "clickOnce",
+      "parentSelectors": [
+        "load_more_reviews"
+      ],
+      "clickElementSelector": "a:contains(\"Read More\")",
+      "discardInitialElements": "do-not-discard",
+      "clickElementUniquenessType": "uniqueText"
+    },
+    {
+      "id": "Review",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "div[class=\"more reviewdata\"]",
+      "parentSelectors": [
+        "load_more_reviews"
+      ]
+    },
+    {
+      "id": "Location",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "div.usr-addr-text",
+      "parentSelectors": [
+        "load_more_reviews"
+      ]
+    },
+    {
+      "id": "Author",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "div.user-ms-name a",
+      "parentSelectors": [
+        "load_more_reviews"
+      ]
+    },
+    {
+      "id": "pagination",
+      "type": "SelectorLink",
+      "delay": 0,
+      "multiple": true,
+      "selector": ".next a",
+      "parentSelectors": [
+        "_root",
+        "pagination"
+      ]
+    }
+  ]
+}

@@ -8,7 +8,7 @@ import json
 def main():
     browser = None
     try:
-        with open("testlink.json", encoding="utf-8") as f:
+        with open("Sitemaps/wegsman.json", encoding="utf-8") as f:
            json_sitemap = json.load(f)
         sitemap = Sitemap(json_sitemap.get("_id"), json_sitemap.get("startUrl"), json_sitemap.get("selectors"))
         queue = TaskQueue()

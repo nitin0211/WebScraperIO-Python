@@ -4,7 +4,7 @@ from WebScraper.Utils import setInterval
 from WebScraper.UniqueElementList import UniqueElementList
 from selenium.webdriver.common.by import By
 import time
-from WebScraper.JsUtils import TRIGGER_ELEMENT_CLICK, GET_ITEM_CSS_PATH
+from WebScraper.JsUtils import TRIGGER_ELEMENT_CLICK, GET_ITEM_CSS_PATH, BUTTON_CLICK
 from WebScraper.selector import ElementQuery
 
 
@@ -49,14 +49,22 @@ class ClickSelector(Selector):
     def will_return_elements(self):
         return True
 
-    def get_click_elements(self, parent_element):
-        click_elements = ElementQuery(self.actions.protocol.get("clickElementSelector"), parent_element).execute()
-        return click_elements
+    def get_click_elements(self, parent_element, driver):
+        return self._get_click_elements(driver)
+        # click_elements = ElementQuery(self.actions.protocol.get("clickElementSelector"), parent_element).execute()
+        # return click_elements
 
-    def trigger_button_click(self, browser, click_element):
-        # css_selector = browser.driver.execute_script(GET_ITEM_CSS_PATH, click_element)
-        # print(css_selector)
-        browser.driver.execute_async_script(TRIGGER_ELEMENT_CLICK, click_element)
+    def _get_click_elements(self, driver):
+        click_selector = self.actions.protocol.get("clickElementSelector")
+        click_elements = driver.find_elements(By.CSS_SELECTOR, click_selector)
+        result_css_path = []
+        for single_click_element in click_elements:
+            cur_path = driver.execute_script(GET_ITEM_CSS_PATH, single_click_element)
+            result_css_path.append(cur_path)
+        return result_css_path
+
+    def trigger_button_click(self, driver, click_element):
+        driver.execute_script(BUTTON_CLICK, click_element)
 
     def get_specific_data(self, browser, job_url, parent_element):
         driver = browser.driver
@@ -68,7 +76,7 @@ class ClickSelector(Selector):
             for element in elements:
                 found_elements.push(element)
 
-        click_elements = self.actions.get_click_elements(browser, job_url)
+        click_elements = self.get_click_elements(parent_element, driver)
         if len(click_elements) == 0:
             return found_elements
 
@@ -77,7 +85,7 @@ class ClickSelector(Selector):
         current_click_element = click_elements[0]
         if self.actions.protocol.get('clickType') == 'clickOnce':
             done_clicking_elements.push(current_click_element)
-        self.trigger_button_click(browser, current_click_element)
+        self.trigger_button_click(driver, current_click_element)
 
         time_step = float(self.delay)
         next_element_selection = time.time() + time_step
@@ -93,8 +101,8 @@ class ClickSelector(Selector):
             if now < next_element_selection:
                 return
 
-            parent_element = driver.find_element(By.TAG_NAME, "html").get_attribute("outerHTML")
-            elements_ = self.get_data_elements(browser, job_url, parent_element)
+            parent_elements = driver.find_element(By.TAG_NAME, "html").get_attribute("outerHTML")
+            elements_ = self.get_data_elements(browser, job_url, parent_elements)
             added_an_element = False
             for item in elements_:
                 added = found_elements.push(item)
@@ -103,7 +111,7 @@ class ClickSelector(Selector):
             if not added_an_element:
                 done_clicking_elements.push(current_click_element)
 
-            click_elements = self.actions.get_click_elements(browser, job_url)
+            click_elements = self.get_click_elements(parent_elements, driver)
 
             click_elements = list(filter(lambda x: not done_clicking_elements.is_added(x), click_elements))
 
@@ -114,7 +122,7 @@ class ClickSelector(Selector):
                 current_click_element = click_elements[0]
                 if self.actions.protocol.get("clickType") == 'clickOnce':
                     done_clicking_elements.push(current_click_element)
-                self.trigger_button_click(browser, current_click_element)
+                self.trigger_button_click(driver, current_click_element)
                 next_element_selection = now + time_step
 
         inter = setInterval(1, click_func)

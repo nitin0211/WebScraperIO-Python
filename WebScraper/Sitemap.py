@@ -3,6 +3,7 @@ from WebScraper.selector.LinkSelector import LinkSelector
 from WebScraper.selector.ElementSelector import ElementSelector
 from WebScraper.selector.ScrollSelector import ScrollSelector
 from WebScraper.selector.ClickSelector import ClickSelector
+from WebScraper.selector.AttributeSelector import AttributeSelector
 from WebScraper.SelectorList import SelectorList
 
 import logging
@@ -18,7 +19,6 @@ class Sitemap(object):
         self.startUrl = startUrl
         self.selectors = SelectorList(selectorsStr)
         List = json.dumps(self.selectors, default=lambda o: o.__dict__)
-        print(List)
 
     def get_all_selectors(self, parent_selector):
         return self.selectors.get_all_selectors(parent_selector)

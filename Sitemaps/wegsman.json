@@ -1,0 +1,131 @@
+{
+  "_id": "wegs_aak",
+  "startUrl":
+    "https://shop.wegmans.com/product/26852/wegmans-thick-sliced-center-cut-uncured-bacon"
+  ,
+  "selectors": [
+    {
+      "id": "click_review_tab",
+      "type": "SelectorElementClick",
+      "delay": 2,
+      "multiple": false,
+      "selector": "span.css-leuiof",
+      "clickType": "clickOnce",
+      "parentSelectors": [
+        "_root"
+      ],
+      "clickElementSelector": "span.css-leuiof",
+      "discardInitialElements": "do-not-discard",
+      "clickElementUniquenessType": "uniqueText"
+    },
+    {
+      "id": "main",
+      "type": "SelectorElementClick",
+      "delay": 4,
+      "multiple": true,
+      "selector": "div.css-z1kgx9",
+      "clickType": "clickMore",
+      "click_max": 100,
+      "parentSelectors": [
+        "_root"
+      ],
+      "clickElementSelector": "button.css-1ft395q",
+      "discardInitialElements": "do-not-discard",
+      "clickElementUniquenessType": "uniqueText"
+    },
+    {
+      "id": "author",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "div.css-1u6gcdi",
+      "parentSelectors": [
+        "main"
+      ]
+    },
+    {
+      "id": "date",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "span",
+      "parentSelectors": [
+        "main"
+      ]
+    },
+    {
+      "id": "review",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "div.css-1kuy7z7",
+      "parentSelectors": [
+        "main"
+      ]
+    },
+    {
+      "id": "Review Rating",
+      "type": "SelectorElementAttribute",
+      "delay": 0,
+      "multiple": false,
+      "optional": true,
+      "selector": "div[class=\"css-hiuq1\"]",
+      "parentSelectors": [
+        "main"
+      ],
+      "extractAttribute": "aria-label"
+    },
+    {
+      "id": "SKU",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "h1",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "sku rating and number of ratings",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": ".css-69y512 span",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "prices",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "span.css-1o7wxo5",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "category",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": ".breadcrumbs li:nth-of-type(4) a",
+      "parentSelectors": [
+        "_root"
+      ]
+    }
+  ]
+}

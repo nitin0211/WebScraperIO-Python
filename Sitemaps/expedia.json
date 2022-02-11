@@ -1,0 +1,84 @@
+{
+  "_id": "expedia",
+  "startUrl":
+    "https://www.expedia.com/Las-Vegas-Hotels-Caesars-Palace-Resort-Casino.h41245.Hotel-Information?chkin=10%2F4%2F2019&chkout=10%2F5%2F2019&destination=Colosseum%20at%20Caesars%20Palace%2C%20Las%20Vegas%2C%20Nevada%2C%20United%20States%20of%20America&position=1&pwa_ts=1568881816595&rank=1&regionId=6159537&rfrr=HSR&rm1=a2&slots=HSR_A&sort=recommended&swpToggleOn=true&testVersionOverride=31936.90218.3%2C31844.87534.0%2C31779.89311.1&top_cur=USD&top_dp=609"
+  ,
+  "selectors": [
+    {
+      "id": "see_all",
+      "type": "SelectorElementClick",
+      "delay": 2,
+      "multiple": false,
+      "selector": "li:nth-of-type(6) a.uitk-tab-anchor",
+      "clickType": "clickOnce",
+      "parentSelectors": [
+        "_root"
+      ],
+      "clickElementSelector": "li:nth-of-type(6) span.uitk-tab-text",
+      "discardInitialElements": "do-not-discard",
+      "clickElementUniquenessType": "uniqueText"
+    },
+    {
+      "id": "review_element",
+      "type": "SelectorElementClick",
+      "delay": 3,
+      "multiple": true,
+      "selector": ".uitk-layout-grid-item div.uitk-card-content-section-border-block-end",
+      "clickType": "clickMore",
+      "click_max": 100,
+      "parentSelectors": [
+        "_root"
+      ],
+      "clickElementSelector": "button.uitk-button-secondary",
+      "discardInitialElements": "do-not-discard",
+      "clickElementUniquenessType": "uniqueText"
+    },
+    {
+      "id": "Review",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "span[itemprop='description']",
+      "parentSelectors": [
+        "review_element"
+      ]
+    },
+    {
+      "id": "date",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "span[itemprop='datePublished']",
+      "parentSelectors": [
+        "review_element"
+      ]
+    },
+    {
+      "id": "Author",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "h5",
+      "parentSelectors": [
+        "review_element"
+      ]
+    },
+    {
+      "id": "review_rating",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "span[itemprop='ratingValue']",
+      "parentSelectors": [
+        "review_element"
+      ]
+    }
+  ]
+}

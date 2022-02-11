@@ -1,0 +1,100 @@
+{
+  "_id": "homedepot_url",
+  "startUrl":
+    "https://www.homedepot.com/b/Bath-Bathroom-Vanities/Wyndham-Collection/Rectangular/N-5yc1vZcfv3ZbbtZ1z0mek7"
+  ,
+  "selectors": [
+    {
+      "id": "main",
+      "type": "SelectorElementScroll",
+      "delay": 2,
+      "multiple": true,
+      "selector": "div[class*=\"browse-search__pod\"] div[data-type=\"product\"]",
+      "parentSelectors": [
+        "_root",
+        "pagination"
+      ]
+    },
+    {
+      "id": "sku",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "span.product-pod__title__product",
+      "parentSelectors": [
+        "main"
+      ]
+    },
+    {
+      "id": "brand",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "span.product-pod__title__brand--bold",
+      "parentSelectors": [
+        "main"
+      ]
+    },
+    {
+      "id": "review_count",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "div > a span.product-pod__ratings-count:contains(\"(\")",
+      "parentSelectors": [
+        "main"
+      ]
+    },
+    {
+      "id": "price",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": ".price-format__main-price span:nth-of-type(2)",
+      "parentSelectors": [
+        "main"
+      ]
+    },
+    {
+      "id": "sku_link",
+      "type": "SelectorLink",
+      "delay": 0,
+      "multiple": false,
+      "selector": "a.header",
+      "parentSelectors": [
+        "main"
+      ]
+    },
+    {
+      "id": "price2",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "#standard-price > div > div > span:nth-child(3)",
+      "parentSelectors": [
+        "main"
+      ]
+    },
+    {
+      "id": "pagination",
+      "type": "SelectorLink",
+      "delay": 0,
+      "multiple": false,
+      "selector": "a[aria-label='Next']",
+      "parentSelectors": [
+        "_root",
+        "pagination"
+      ]
+    }
+  ]
+}

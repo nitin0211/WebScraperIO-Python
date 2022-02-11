@@ -1,0 +1,143 @@
+{
+  "_id": "nweegg_final",
+  "startUrl":
+    "https://www.newegg.com/logitech-c310/p/N82E16826104368?Description=logitech%20webcam&cm_re=logitech_webcam-_-26-104-368-_-Product"
+  ,
+  "selectors": [
+    {
+      "id": "main",
+      "type": "SelectorElementScroll",
+      "delay": 5,
+      "multiple": true,
+      "selector": "div[class=\"page-content\"]",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "SKU",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "h1.product-title",
+      "parentSelectors": [
+        "main"
+      ]
+    },
+    {
+      "id": "Product Rating",
+      "type": "SelectorElementAttribute",
+      "delay": 0,
+      "multiple": false,
+      "optional": true,
+      "selector": ".product-rating i",
+      "parentSelectors": [
+        "main"
+      ],
+      "extractAttribute": "title"
+    },
+    {
+      "id": "Price",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": ".product-price li.price-current",
+      "parentSelectors": [
+        "main"
+      ]
+    },
+    {
+      "id": "reviews_click",
+      "type": "SelectorElementClick",
+      "delay": 4,
+      "multiple": true,
+      "selector": "#product-details > div.tab-navs > div:nth-child(3)",
+      "clickType": "clickOnce",
+      "parentSelectors": [
+        "main"
+      ],
+      "clickElementSelector": "#product-details > div.tab-navs > div:nth-child(3)",
+      "discardInitialElements": "do-not-discard",
+      "clickElementUniquenessType": "uniqueText"
+    },
+    {
+      "id": "new_click",
+      "type": "SelectorElementClick",
+      "delay": 4,
+      "multiple": true,
+      "selector": "#search > label > select > option:nth-child(2)",
+      "clickType": "clickOnce",
+      "parentSelectors": [
+        "main"
+      ],
+      "clickElementSelector": "#search > label > select > option:nth-child(2)",
+      "discardInitialElements": "do-not-discard",
+      "clickElementUniquenessType": "uniqueText"
+    },
+    {
+      "id": "element",
+      "type": "SelectorElementClick",
+      "delay": 2,
+      "multiple": true,
+      "selector": "div.comments-cell",
+      "clickType": "clickMore",
+      "click_max": 100,
+      "parentSelectors": [
+        "main"
+      ],
+      "clickElementSelector": ".list-tool-pagination i.fa-caret-right",
+      "discardInitialElements": "do-not-discard",
+      "clickElementUniquenessType": "uniqueText"
+    },
+    {
+      "id": "Author",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "div.comments-name",
+      "parentSelectors": [
+        "element"
+      ]
+    },
+    {
+      "id": "Review Rating",
+      "type": "SelectorElementAttribute",
+      "delay": 0,
+      "multiple": false,
+      "optional": true,
+      "selector": "i",
+      "parentSelectors": [
+        "element"
+      ],
+      "extractAttribute": "aria-label"
+    },
+    {
+      "id": "date",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": ".comments-title span.comments-text",
+      "parentSelectors": [
+        "element"
+      ]
+    },
+    {
+      "id": "Review",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "div[class=\"comments-content\"]",
+      "parentSelectors": [
+        "element"
+      ]
+    }
+  ]
+}

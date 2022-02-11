@@ -1,0 +1,149 @@
+{
+  "_id": "ulta_review_test",
+  "startUrl":
+    "https://www.ulta.com/p/supernova-rechargeable-at-home-teeth-whitening-kit-pimprod2023611"
+  ,
+  "selectors": [
+    {
+      "id": "SKU",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "span.Text--subtitle-1",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "Brand",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "p.Text--\\$magenta-50",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "Price",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "span.Text--title-6",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "Product Rating",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": ".pr-snippet-stars-container div.pr-snippet-rating-decimal",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "Element",
+      "type": "SelectorElementClick",
+      "delay": 5,
+      "multiple": true,
+      "selector": "div.pr-review",
+      "clickType": "clickMore",
+      "click_max": 10,
+      "parentSelectors": [
+        "_root"
+      ],
+      "clickElementSelector": "a[aria-label='Next']",
+      "discardInitialElements": "do-not-discard",
+      "clickElementUniquenessType": "uniqueText"
+    },
+    {
+      "id": "Review Rating",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "div.pr-snippet-rating-decimal",
+      "parentSelectors": [
+        "Element"
+      ]
+    },
+    {
+      "id": "Title",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "h5",
+      "parentSelectors": [
+        "Element"
+      ]
+    },
+    {
+      "id": "Review",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "p.pr-rd-description-text",
+      "parentSelectors": [
+        "Element"
+      ]
+    },
+    {
+      "id": "date",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "to_date": "2021-09-25 23:59:59+00:00",
+      "multiple": false,
+      "selector": "time",
+      "from_date": "2021-01-01 00:00:00+00:00",
+      "sort_order": "desc",
+      "parentSelectors": [
+        "Element"
+      ],
+      "apply_date_range": true
+    },
+    {
+      "id": "Author",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": ".pr-rd-author-nickname span:nth-of-type(2)",
+      "parentSelectors": [
+        "Element"
+      ]
+    },
+    {
+      "id": "Location",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": ".pr-rd-author-location span:nth-of-type(2)",
+      "parentSelectors": [
+        "Element"
+      ]
+    },
+    {
+      "id": "Breadcrum",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": ".Breadcrumb ul",
+      "parentSelectors": [
+        "_root"
+      ],
+      "optional":true
+    }
+  ]
+}

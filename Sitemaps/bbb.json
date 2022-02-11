@@ -1,0 +1,79 @@
+{
+  "_id": "bbb",
+  "startUrl":
+    "https://www.bbb.org/us/ca/san-francisco/profile/transportation/uber-technologies-1116-438996/customer-reviews"
+  ,
+  "selectors": [
+    {
+      "id": "Brand",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "span.MuiTypography-h3",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "Breadcrumb",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "ol",
+      "parentSelectors": [
+        "_root"
+      ]
+    },
+    {
+      "id": "main",
+      "type": "SelectorElementClick",
+      "delay": 2,
+      "multiple": true,
+      "selector": "div.MuiCardContent-root",
+      "clickType": "clickMore",
+      "click_max": 100,
+      "parentSelectors": [
+        "_root"
+      ],
+      "clickElementSelector": ".eevMuP span.MuiButton-label",
+      "discardInitialElements": "discard-when-click-element-exists",
+      "clickElementUniquenessType": "uniqueText"
+    },
+    {
+      "id": "review",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "div[class*=\"styles__Review\"]",
+      "parentSelectors": [
+        "main"
+      ]
+    },
+    {
+      "id": "date",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "selector": "div[class*=\"styles__Date\"]",
+      "parentSelectors": [
+        "main"
+      ]
+    },
+    {
+      "id": "Author",
+      "type": "SelectorText",
+      "delay": 0,
+      "regex": "",
+      "multiple": false,
+      "optional": true,
+      "selector": "div[class*=\"styles__Name\"]",
+      "parentSelectors": [
+        "main"
+      ]
+    }
+  ]
+}

@@ -116,6 +116,6 @@ class SelectorList(MutableSequence):
 
         child_selectors = self.get_all_selectors(selector_id)
         for selector in child_selectors:
-            if selector.will_return_multiple_records:
+            if selector.will_return_multiple_records():
                 return True
         return False

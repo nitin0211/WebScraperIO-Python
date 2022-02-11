@@ -4,9 +4,11 @@ from WebScraper.DataExtractor import DataExtractor
 from WebScraper.action.AtomAction import *
 from webdriver_manager.chrome import ChromeDriverManager
 from WebScraper.Utils import get_md5
-
+from WebScraper.chrome_plugin_files.background import background_js_str
+import time
 import threading
 import logging
+import zipfile
 
 logger = logging.getLogger(__name__)
 
@@ -16,6 +18,9 @@ class ChromeBrowser(object):
     _instance_lock = threading.Lock()
 
     def __init__(self, options, desired_capabilities, **kwargs):
+        self.host, self.port = "", ""
+        self.username, self.password = "", ""
+        self.mainfest_json_file = 'WebScraper/chrome_plugin_files/manifest.json'
         self.options = self.chrome_options(options, desired_capabilities)
         self.rainbow = dict()
         self.driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=self.options)
@@ -30,7 +35,8 @@ class ChromeBrowser(object):
         default_options = Options()
         for option in options:
             default_options.add_argument(option)
-
+        # plugin = self.generate_plugin()
+        # default_options.add_extension(plugin)
         # emulation = {
         #     'deviceName': 'iPhone 6 Plus'
         # }
@@ -51,7 +57,7 @@ class ChromeBrowser(object):
         # "none"	        none	                  No correspondence
         # "eager"	        eager	                "interactive"
         # "normal"	        normal	                "complete"
-        default_options.capabilities["pageLoadStrategy"] = "eager"
+        # default_options.capabilities["pageLoadStrategy"] = "eager"
 
         return default_options
 
@@ -103,9 +109,31 @@ class ChromeBrowser(object):
 
         # Decoupling, waiting flexibly, avoiding using the driver.page_source attribute to get the html elements of the
         # webpage
+        time.sleep(10)
         parent_element = self.driver.find_element(By.TAG_NAME, "html").get_attribute("outerHTML")
 
         dataExtractor = DataExtractor(self, url, sitemap, parent_selector_id, parent_element)
         results = dataExtractor.get_data()
 
         return results
+
+    def generate_plugin(self):
+        manifest_json, background_js = self.get_plugin_file_data()
+        pluginfile = self.generate_plugin_file_name()
+        with zipfile.ZipFile(pluginfile, 'w') as zp:
+            zp.writestr("manifest.json", manifest_json)
+            zp.writestr("background.js", background_js)
+        return pluginfile
+
+    def generate_plugin_file_name(self):
+        return "proxy_auth_plugin.zip"
+
+    def get_plugin_file_data(self):
+        manifest_json = self.read_from_text_file(self.mainfest_json_file)
+        background_js = background_js_str % (self.host, self.port, self.username, self.password)
+        return manifest_json, background_js
+
+    def read_from_text_file(self, filename):
+        with open(filename) as file:
+            text = file.read()
+        return text
