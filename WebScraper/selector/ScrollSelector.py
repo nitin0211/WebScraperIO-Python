@@ -11,12 +11,6 @@ from WebScraper.UniqueElementList import UniqueElementList
 @RegisterSelectorType("SelectorElementScroll")
 class ScrollSelector(Selector):
 
-    can_return_multiple_records = True
-    can_have_child_selectors = True
-    can_have_local_child_selectors = True
-    can_create_new_jobs = False
-    can_return_elements = True
-
     features = {
         "multiple": False,
         "delay": 0,
